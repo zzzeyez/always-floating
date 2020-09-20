@@ -1,0 +1,15 @@
+html {
+	min-height: 100%;
+	min-width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: #151519;
+  margin: 0;
+  padding: 0;
+}
