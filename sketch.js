@@ -5,7 +5,7 @@ let shade = ["#A7C5BD", "#E5DDCB", "#EB7B59", "#CF4647", "#524656"];
 let count = 1000;
 let countmax = 1000;
 
-let blurx = -1;
+let blurx = 0;
 
 let noiseMax;
 let zoff = 1;
@@ -93,7 +93,7 @@ class Ribbons {
     }
     endShape(CLOSE);
 
-    zoff += random(0.0004, 0.00059);
+    zoff += random(0.0004, 0.00065);
   }
 }
 
@@ -101,14 +101,19 @@ function mousePressed() {
   if (paused < 1) {
     noLoop();
     stop();
-    // filter(BLUR, 1);
     paused = 1;
   } else {
     paused = 0;
-		background(cb);
+    background(cb);
 
     loop();
   }
+}
+
+function mouseDragged() {
+  blurx = (mouseY / height) * 5;
+  filter(BLUR, blurx);
+	loop()
 }
 
 function keyReleased() {
