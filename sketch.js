@@ -1,7 +1,9 @@
 // let shade = ["#774F38", "#E08E79", "#F1D4AF", "#ECE5CE", "#C5E0DC"];
 // let shade = ["#02C8D6", "#8DF0F7", "#4FC8F3", "#567E9C", "#ABE0DB"];
 // let shade = ["#AFFBFF", "#D2FDFE", "#FEFAC2", "#FEBF97", "#FE6960"];
-let shade = ["#A7C5BD", "#E5DDCB", "#EB7B59", "#CF4647", "#524656"];
+// let shade = ["#A7C5BD", "#E5DDCB", "#EB7B59", "#CF4647", "#524656"];
+let shade = ["#99B898", "#FECEA8", "#FF847C", "#E84A5F", "#2A363B"];
+
 let count = 1000;
 let countmax = 1000;
 
@@ -12,6 +14,7 @@ let zoff = 1;
 
 let paused = 0;
 
+let palette;
 let ca, cb;
 
 let ox, oy;
@@ -34,9 +37,9 @@ function draw() {
   r1.move();
   r2.move();
   r3.move();
-  if (blurx < 0) {
-    blurx = 2;
-  }
+  // if (blurx < 0) {
+  //   blurx = 2;
+  // }
 }
 
 class Ribbons {
@@ -44,15 +47,13 @@ class Ribbons {
     if (count < countmax) {
       count = count + 1;
     } else {
-      // random colors
       let shades = random(shade);
       ca = color(shades);
       cb = color(shades);
       // prevent duplicate colors
-      // if (ca === cb) {
-      //   ca = color(shades);
-      // }
-
+      if (ca === cb) {
+        ca = color(shades);
+      }
       // check if first run
       if (countmax < 1000) {
         if (blurx > 0) {
@@ -105,15 +106,19 @@ function mousePressed() {
   } else {
     paused = 0;
     background(cb);
-
     loop();
   }
 }
 
 function mouseDragged() {
   blurx = (mouseY / height) * 5;
-  filter(BLUR, blurx);
-	loop()
+  if (blurx > 1) {
+    filter(BLUR, blurx);
+  } else {
+    blurx = 0;
+  }
+  paused = 0;
+  loop();
 }
 
 function keyReleased() {
