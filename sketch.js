@@ -1,13 +1,15 @@
 // let shade = ["#774F38", "#E08E79", "#F1D4AF", "#ECE5CE", "#C5E0DC"];
+// greens
 // let shade = ["#02C8D6", "#8DF0F7", "#4FC8F3", "#567E9C", "#ABE0DB"];
 // let shade = ["#AFFBFF", "#D2FDFE", "#FEFAC2", "#FEBF97", "#FE6960"];
 // let shade = ["#A7C5BD", "#E5DDCB", "#EB7B59", "#CF4647", "#524656"];
+// vibrant
 let shade = ["#99B898", "#FECEA8", "#FF847C", "#E84A5F", "#2A363B"];
 
 let count = 1000;
 let countmax = 1000;
 
-let blurx = 0;
+let blurx = 1.5;
 
 let noiseMax;
 let zoff = 1;
@@ -19,13 +21,27 @@ let ca, cb;
 
 let ox, oy;
 
-// let MAX;
+var fps = 30;
+var pixeldensity = "false"
+
+// create a capturer that exports PNG images in a TAR file
+var filming = "false";
+var capturer = new CCapture({
+  framerate: fps,
+  format: "png",
+  name: "floating",
+  timeLimit: 60,
+  verbose: true,
+});
 
 function setup() {
+  // createCanvas(1280, 720);
   createCanvas(windowWidth, windowHeight);
+	pixelDensity(1);
+  frameRate(fps);
   angleMode(DEGREES);
   // smooth();
-  strokeWeight(0.6);
+  strokeWeight(0.58);
 
   // ribbons
   r1 = new Ribbons();
@@ -98,6 +114,12 @@ class Ribbons {
   }
 }
 
+function render() {
+  requestAnimationFrame(render);
+  // rendering stuff ...
+  capturer.capture(canvas);
+}
+
 function mousePressed() {
   if (paused < 1) {
     noLoop();
@@ -123,7 +145,28 @@ function mouseDragged() {
 
 function keyReleased() {
   if (keyCode == DELETE || keyCode == BACKSPACE) background(cb);
-  if (key == "s" || key == "S") saveCanvas();
+  if (key == "s" || key == "S") {
+    if (filming == "false") {
+      capturer.start();
+      render();
+      filming = "true";
+    } else {
+      capturer.stop();
+      capturer.save();
+      filming = "false";
+    }
+  }
+  if (key == "r" || key == "R") {
+    if (pixeldensity == "false") {
+      pixelDensity(2);
+			background (cb);
+			pixeldensity = "true";
+    } else {
+      pixelDensity(1);
+			background (cb);
+      pixeldensity = "false";
+    }
+  }
   if (key == "1") blurx = 0;
   if (key == "2") blurx = 1;
   if (key == "3") blurx = 5;

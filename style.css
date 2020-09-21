@@ -1,15 +1,28 @@
 html {
-	min-height: 100%;
-	min-width: 100%;
+  min-height: 100%;
+  min-width: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-	background-color: #151519;
-  margin: 0;
+  background-color: #151519;
+  align-content: center;
+  left: auto;
+  right: auto;
+  margin: auto;
+  padding: 0;
+}
+
+#sketch {
+	width: 100%;
+  align-content: center;
+	top: 50px;
+  left: auto;
+  right: auto;
+  margin: auto;
   padding: 0;
 }
