@@ -1,12 +1,7 @@
-// let shade = ["#774F38", "#E08E79", "#F1D4AF", "#ECE5CE", "#C5E0DC"];
-// greens
-// let shade = ["#02C8D6", "#8DF0F7", "#4FC8F3", "#567E9C", "#ABE0DB"];
-// let shade = ["#AFFBFF", "#D2FDFE", "#FEFAC2", "#FEBF97", "#FE6960"];
-// let shade = ["#A7C5BD", "#E5DDCB", "#EB7B59", "#CF4647", "#524656"];
-// vibrant
-// let shade = ["#99B898", "#FECEA8", "#FF847C", "#E84A5F", "#2A363B"];
-
 // random colors from css
+// var c0 = window
+//   .getComputedStyle(document.documentElement)
+//   .getPropertyValue("--c0");
 var c1 = window
   .getComputedStyle(document.documentElement)
   .getPropertyValue("--c1");
@@ -58,11 +53,11 @@ var capturer = new CCapture({
 function setup() {
   // createCanvas(1280, 720);
   createCanvas(windowWidth, windowHeight);
-  // pixelDensity(1);
+	pixelDensity(1);
   frameRate(fps);
   angleMode(DEGREES);
 	smooth();
-  strokeWeight(0.3);
+  strokeWeight(0.2);
 
   // ribbons
   r1 = new Ribbons();
@@ -84,8 +79,9 @@ class Ribbons {
     } else {
       let shades = random(shade);
       ca = color(shades);
-      let shadesb = random(shade);
-      cb = color(shadesb);
+			let shadesb = random(shade);
+			cb = color(shadesb);
+			// cb = c0
 
       // init or blur
       if (countmax < 1000) {
@@ -137,7 +133,7 @@ class Ribbons {
     }
     endShape(CLOSE);
 
-    zoff += random(0.0004, 0.00055);
+    zoff += random(0.00033, 0.00045);
   }
 }
 

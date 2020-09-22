@@ -1,9 +1,11 @@
+@import url('file:///Users/zzzeyez/.cache/wal/colors.css');
+
 :root {
-  --c1: #774F38;
-  --c2: #E08E79;
-  --c3: #F1D4AF;
-  --c4: #ECE5CE;
-  --c5: #C5E0DC;
+	--c1: var(--color1, #774F38);
+	--c2: var(--color2, #E08E79);
+	--c3: var(--color3, #F1D4AF);
+	--c4: var(--color4, #ECE5CE);
+	--c5: var(--color5, #C5E0DC);
 }
 
 html {
