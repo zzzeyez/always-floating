@@ -41,18 +41,18 @@ var fps = 60;
 var pixeldensity = "false";
 
 // create a capturer that exports PNG images in a TAR file
-var filming = "false";
-var capturer = new CCapture({
-  framerate: fps,
-  format: "png",
-  name: "floating",
-  timeLimit: 60,
-  verbose: true,
-});
+// var filming = "false";
+// var capturer = new CCapture({
+//   framerate: fps,
+//   format: "png",
+//   name: "floating",
+//   timeLimit: 60,
+//   verbose: true,
+// });
 
 function setup() {
-  // createCanvas(1280, 720);
-  createCanvas(windowWidth, windowHeight);
+	// createCanvas(854, 480);
+	createCanvas(windowWidth, windowHeight);
 	pixelDensity(1);
   frameRate(fps);
   angleMode(DEGREES);
@@ -137,11 +137,11 @@ class Ribbons {
   }
 }
 
-function render() {
-  requestAnimationFrame(render);
-  // rendering stuff ...
-  capturer.capture(canvas);
-}
+// function render() {
+//   requestAnimationFrame(render);
+//   // rendering stuff ...
+//   capturer.capture(canvas);
+// }
 
 function mousePressed() {
   if (paused < 1) {
@@ -168,17 +168,17 @@ function mouseDragged() {
 
 function keyReleased() {
   if (keyCode == DELETE || keyCode == BACKSPACE) background(cb);
-  if (key == "s" || key == "S") {
-    if (filming == "false") {
-      capturer.start();
-      render();
-      filming = "true";
-    } else {
-      capturer.stop();
-      capturer.save();
-      filming = "false";
-    }
-  }
+  // if (key == "s" || key == "S") {
+  //   if (filming == "false") {
+  //     capturer.start();
+  //     render();
+  //     filming = "true";
+  //   } else {
+  //     capturer.stop();
+  //     capturer.save();
+  //     filming = "false";
+  //   }
+  // }
   if (key == "r" || key == "R") {
     if (pixeldensity == "false") {
       pixelDensity(2);
