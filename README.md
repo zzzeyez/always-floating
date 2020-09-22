@@ -6,4 +6,4 @@ r key enables/disables retina mode (effects speed)
 
 will pull colors from `pywal` if you edit the value at the top of `style.css`
 
-[view live]https://zzzeyez.github.io/always-floating
+[view live](https://zzzeyez.github.io/always-floating)
