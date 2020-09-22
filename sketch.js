@@ -4,12 +4,32 @@
 // let shade = ["#AFFBFF", "#D2FDFE", "#FEFAC2", "#FEBF97", "#FE6960"];
 // let shade = ["#A7C5BD", "#E5DDCB", "#EB7B59", "#CF4647", "#524656"];
 // vibrant
-let shade = ["#99B898", "#FECEA8", "#FF847C", "#E84A5F", "#2A363B"];
+// let shade = ["#99B898", "#FECEA8", "#FF847C", "#E84A5F", "#2A363B"];
+
+// random colors from css
+var c1 = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--c1");
+var c2 = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--c2");
+var c3 = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--c3");
+var c4 = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--c4");
+var c5 = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--c5");
+let shade = [c1, c2, c3, c4, c5];
 
 let count = 1000;
 let countmax = 1000;
+let countb = 0;
+let countmaxb = 3;
 
-let blurx = 1.5;
+let blurx = 3;
 
 let noiseMax;
 let zoff = 1;
@@ -17,12 +37,13 @@ let zoff = 1;
 let paused = 0;
 
 let palette;
+let bg;
 let ca, cb;
 
 let ox, oy;
 
-var fps = 30;
-var pixeldensity = "false"
+var fps = 60;
+var pixeldensity = "false";
 
 // create a capturer that exports PNG images in a TAR file
 var filming = "false";
@@ -37,44 +58,50 @@ var capturer = new CCapture({
 function setup() {
   // createCanvas(1280, 720);
   createCanvas(windowWidth, windowHeight);
-	pixelDensity(1);
+  // pixelDensity(1);
   frameRate(fps);
   angleMode(DEGREES);
 	smooth();
-  strokeWeight(0.58);
+  strokeWeight(0.3);
 
   // ribbons
   r1 = new Ribbons();
-  r2 = new Ribbons();
-  r3 = new Ribbons();
+  // r2 = new Ribbons();
+  // r3 = new Ribbons();
 }
 
 function draw() {
   r1.move();
-  r2.move();
-  r3.move();
-  // if (blurx < 0) {
-  //   blurx = 2;
-  // }
+  // r2.move();
+  // r3.move();
 }
 
 class Ribbons {
   move() {
+    // define colors after ribbon completes
     if (count < countmax) {
       count = count + 1;
     } else {
       let shades = random(shade);
       ca = color(shades);
-      cb = color(shades);
-      // prevent duplicate colors
-      if (ca === cb) {
-        ca = color(shades);
-      }
-      // check if first run
+      let shadesb = random(shade);
+      cb = color(shadesb);
+
+      // init or blur
       if (countmax < 1000) {
         if (blurx > 0) {
-          filter(BLUR, blurx);
+
+          // blur after three ribbons
+          if (countb < countmaxb) {
+            countb = countb + 1;
+          } else {
+						countb = 0;
+						countmaxb = random(5);
+            filter(BLUR, blurx);
+          }
         }
+
+			// set background (init)
       } else {
         background(cb);
       }
@@ -85,12 +112,12 @@ class Ribbons {
       oy = random(-height * 0.5, height * 1.5);
 
       count = 0;
-      countmax = random(333);
+      countmax = random(20, 200);
     }
 
     noFill();
 
-    stroke(lerpColor(ca, cb, abs(sin(zoff * width))));
+    stroke(ca);
     push();
     translate(ox, oy);
     beginShape();
@@ -110,7 +137,7 @@ class Ribbons {
     }
     endShape(CLOSE);
 
-    zoff += random(0.0004, 0.00065);
+    zoff += random(0.0004, 0.00055);
   }
 }
 
@@ -159,11 +186,11 @@ function keyReleased() {
   if (key == "r" || key == "R") {
     if (pixeldensity == "false") {
       pixelDensity(2);
-			background (cb);
-			pixeldensity = "true";
+      background(cb);
+      pixeldensity = "true";
     } else {
       pixelDensity(1);
-			background (cb);
+      background(cb);
       pixeldensity = "false";
     }
   }

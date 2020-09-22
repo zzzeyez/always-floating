@@ -1,9 +1,17 @@
+
+@import '/Users/zzzeyez/.cache/wal/colors.scss';
+
 :root {
-  --c1: #774F38;
-  --c2: #E08E79;
-  --c3: #F1D4AF;
-  --c4: #ECE5CE;
-  --c5: #C5E0DC;
+	// --c1: #{$color1}, #99B898;
+	// --c2: #{$color2}, #FECEA8;
+	// --c3: #{$color3}, #FF847C;
+	// --c4: #{$color4}, #E84A5F;
+	// --c5: #{$color5}, #2A363B;
+	--c1: #{$color1};
+	--c2: #{$color2};
+	--c3: #{$color3};
+	--c4: #{$color4};
+	--c5: #{$color5};
 }
 
 html {
@@ -26,9 +34,9 @@ body {
 }
 
 #sketch {
-  width: 100%;
+	width: 100%;
   align-content: center;
-  top: 50px;
+	top: 50px;
   left: auto;
   right: auto;
   margin: auto;
