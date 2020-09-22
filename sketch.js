@@ -40,7 +40,7 @@ function setup() {
 	pixelDensity(1);
   frameRate(fps);
   angleMode(DEGREES);
-  // smooth();
+	smooth();
   strokeWeight(0.58);
 
   // ribbons
