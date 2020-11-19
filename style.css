@@ -1,6 +1,7 @@
 @import url('file:///Users/zzzeyez/.cache/wal/colors.css');
 
 :root {
+  --c0: var(--color0, #222222);
 	--c1: var(--color1, #774F38);
 	--c2: var(--color2, #E08E79);
 	--c3: var(--color3, #F1D4AF);
